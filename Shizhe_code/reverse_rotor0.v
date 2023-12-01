@@ -60,10 +60,16 @@ end
 
 always @(data_in) 
 begin  
-    
     for(i=0;i<26;i=i+1)begin
-    if(data_in==mapping[i])begin
+    if(data_in==mapping[i])
+    begin
+    if(i-position<0)begin
+    data_out = 5'd26+i-position;
+    end
+    else
+    begin
     data_out = i-position;
+    end
     end
     end
     i=0;
