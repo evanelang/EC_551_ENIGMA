@@ -9,28 +9,30 @@
 
 
 module rotation_engine(
-    input [4:0] data_in,
+    input [2:0] done_out,//each rotor would have its own done_out,remember to pull it down in the rotor module at first place
     input rst,
-    input [11:0] setup,//11:8 rotor1, 7:4 rotor2, 3:0 rotor3
+    input [14:0] setup,//14:10 rotor1, 9:5 rotor2, 4:0 rotor3
     output reg [4:0] rotor1_pos, 
     output reg [4:0] rotor2_pos, 
-    output reg [4:0] rotor3_pos 
-    
+    output reg [4:0] rotor3_pos, 
     );
     
     initial 
     begin
-    rotor1_pos = setup[11:8];
-    rotor2_pos = setup[7:4];
-    rotor3_pos = setup[3:0];
+    rotor1_pos = setup[14:10];
+    rotor2_pos = setup[9:5];
+    rotor3_pos = setup[4:0];
     end
+    
+wire done;
+assign done = done_out[2] & done_out[1] & done_out[0];//move when all rotors are done
 
-always @ (data_in or rst) 
+always @ (done or rst) 
 begin
     if (rst) begin
-        rotor1_pos <= setup[11:8];
-        rotor2_pos <= setup[7:4];
-        rotor3_pos <= setup[3:0];
+        rotor1_pos <= setup[14:10];
+        rotor2_pos <= setup[9:5];
+        rotor3_pos <= setup[4:0];
     end 
     
     else 
