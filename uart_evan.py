@@ -12,6 +12,8 @@ def uart(port, baudrate, enteredtext, timeout=1):
             data_received = ser.read().decode('utf-8').strip()
             if data_received:
                 print(f"rx: {data_received}")
+                ser.close()
+                return data_received
             
             # tx
             data_to_send = enteredtext
@@ -28,8 +30,19 @@ def uart(port, baudrate, enteredtext, timeout=1):
 
 #baudrate and port def
 def show_text():
+    nonchardict = {}
     text = entry.get()
-    uart(port='COM4', baudrate=9600, enteredtext=text)
+    counter = 0
+    finalstring = ""
+    for char in text:
+        if char in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ':
+            if char in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+                sentchar = ord(char.lower()) - 97
+                nonchardict['A'] = counter
+            else:
+                sentchar = ord(char) - 97
+        finalstring += uart(port='COM4', baudrate=9600, enteredtext=char(sentchar))
+        sleep(1)
     label.config(text=text)
 
 window = tk.Tk()
