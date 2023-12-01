@@ -9,10 +9,9 @@
 
 module rotor0(
     input [4:0] data_in,  
-    input [4:0] set_up,//setup position
-    input rotate_carryin,//carryin, if it's first rotor, should deactivated        
-    output reg[4:0] data_out,
-    output reg rotate_carry   
+    input [4:0] position,         
+    output reg [4:0] data_out,
+    output reg done_out   
 );
 
 reg[4:0] mapping[0:25];
@@ -46,21 +45,12 @@ initial begin
     mapping[25] = 5'd9;  // ZJ
 end
 
-reg[4:0] position = 0;
 
-
-always @(data_in or rotate_carryin) begin//for 1st rotor it's just the data_in
-    if (rotate_carryin) begin
-        position = position + 1;
-        if (position > 25) begin
-            rotate_carry = 1;
-            position = 0; 
-        end
-        else begin
-            rotate_carry = 0;
-        end
-    end
+always @(data_in) 
+begin  
+    done_out = 0;
     data_out = mapping[(data_in + position) % 26];
+    done_out = 1;
 end
 
 endmodule
