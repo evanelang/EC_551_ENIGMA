@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Engineer: Long Chen
+// Engineer: Long Chen, and modified by Mayra Teixeira
 // Create Date: 2023/12/1 20:18:52
 // Design Name: rotor0_reflect_unit_tb
 // Module Name: rotor0_reflect_unit_tb
@@ -56,11 +56,33 @@ module testbench_rotor0_reflect_unit;
         
         #10;
         tb_data_in = 5'd16;  
-        tb_position = 5'd3;  
+        tb_position = 5'd3;
+        
+        // adding couple of testbecnhes....
+        #10;
+        tb_data_in = 5'd11;  
+        tb_position = 5'd0;
+        #10 
+        tb_data_in = 5'd22;  
+        tb_position = 5'd3;
+        #10
+        tb_data_in = 5'd20;  
+        tb_position = 5'd3;
+        #10
+        tb_data_in = 5'd8;  
+        tb_position = 5'd3;
+        #10
+        tb_data_in = 5'd13;  
+        tb_position = 5'd3;
+        #10
+        tb_data_in = 5'd18;  
+        tb_position = 5'd2;
+         
         
         #10;
         $finish;
     end
 
 endmodule
+
 
