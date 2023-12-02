@@ -1,0 +1,95 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: BU
+// Engineer: Mayra Teixeira
+// 
+// Create Date: 11/12/2023 10:43:47 PM
+// Design Name: reflectors for the enigma machine to reflect the signal back trough the rotors
+// Module Name: reflectors
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: builidng a reflectors for the enigma machine to reflect the signal back trough the rotors
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module reflector(
+input [7:0] rotor_in,
+output reg [7:0] reflector_output
+    );
+
+    parameter 
+    A=8'd65,
+    B=8'd66,
+    C=8'd67,
+    D=8'd68,
+    E=8'd69,
+    F=8'd70,
+    G=8'd71,
+    H=8'd72,
+    I=8'd73,
+    J=8'd74,
+    K=8'd75,
+    L=8'd76,
+    M=8'd77,
+    N=8'd78,
+    O=8'd79,
+    P=8'd80,
+    Q=8'd81,
+    R=8'd82,
+    S=8'd83,
+    T=8'd84,
+    U=8'd85,
+    V=8'd86,
+    W=8'd87,
+    X=8'd88,
+    Y=8'd89,
+    Z=8'd90;
+
+    always @(*) begin
+        case(rotor_in)
+            A: reflector_output = N;
+            B: reflector_output = O;
+            C: reflector_output = P;
+            D: reflector_output = Q;
+            E: reflector_output = R;
+            F: reflector_output = S;
+            G: reflector_output = T;
+            H: reflector_output = U;
+            I: reflector_output = V;
+            J: reflector_output = W;
+            K: reflector_output = X;
+            L: reflector_output = Y;
+            M: reflector_output = Z;
+            N: reflector_output = A;
+            O: reflector_output = B;
+            P: reflector_output = C;
+            Q: reflector_output = D;
+            R: reflector_output = E;
+            S: reflector_output = F;
+            T: reflector_output = G;
+            U: reflector_output = H;
+            V: reflector_output = I;
+            W: reflector_output = J;
+            X: reflector_output = K;
+            Y: reflector_output = L;
+            Z: reflector_output = M;
+            default: reflector_output = 8'h3F;
+        endcase
+        
+          // Error checking: no letter can be enciphered as itself
+        if (rotor_in == reflector_output) begin
+            reflector_output = 8'h3F;  // set to a special error value
+        end
+  
+    end
+
+endmodule
+
