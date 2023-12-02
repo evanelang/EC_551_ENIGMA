@@ -74,7 +74,7 @@ def show_text():
     for cap in capitalarray:
         finaltext = finaltext[:cap] + finaltext[cap].upper() + finaltext[cap+1:]   
     print(finaltext)
-    print(spacearray)    
+    print(spacearray)
     label.config(text=finaltext)
 
 window = tk.Tk()
