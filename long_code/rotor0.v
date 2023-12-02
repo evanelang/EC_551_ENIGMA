@@ -2,12 +2,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Engineer: Long Chen
 // Create Date: 2023/11/30 17:34:47
-// Design Name: reflector
-// Module Name: reflector
+// Design Name: rotor0_for
+// Module Name: rotor0_for
 // Project Name: ENIGMA551
 //////////////////////////////////////////////////////////////////////////////////
 
-module rotor0(
+module rotor0_forward(
     input [4:0] data_in,  
     input [4:0] position,         
     output reg [4:0] data_out,
@@ -17,6 +17,7 @@ module rotor0(
 reg[4:0] mapping[0:25];
 
 initial begin
+    done_out = 0;
     mapping[0] = 5'd4;   // AE
     mapping[1] = 5'd10;  // BK
     mapping[2] = 5'd12;  // CM
@@ -46,10 +47,10 @@ initial begin
 end
 
 
-always @(data_in) 
+always @(data_in or position) 
 begin  
     done_out = 0;
-    data_out = mapping[(data_in + position) % 26];
+    data_out <= mapping[(data_in + position) % 26];
     done_out = 1;
 end
 

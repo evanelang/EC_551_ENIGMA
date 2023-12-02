@@ -14,7 +14,8 @@ module rotation_engine(
     input [14:0] setup,//14:10 rotor1, 9:5 rotor2, 4:0 rotor3
     output reg [4:0] rotor1_pos, 
     output reg [4:0] rotor2_pos, 
-    output reg [4:0] rotor3_pos, 
+    output reg [4:0] rotor3_pos,
+    output reg done_rst 
     );
     
     initial 
@@ -53,6 +54,7 @@ begin
             end
         end
     end
+
 end
 
 endmodule
