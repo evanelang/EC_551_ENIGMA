@@ -53,7 +53,7 @@ end
 always @(data_in or position) 
 begin
     done_out <= 0;
-    assign sum = (data_in + position) % 26;
+    sum = (data_in + position) % 26;
     data_out <= reverse_mapping[sum];
     done_out <= 1;
 end
