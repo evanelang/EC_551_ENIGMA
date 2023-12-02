@@ -2,48 +2,80 @@ import serial
 import time
 import tkinter as tk
 
-def uart(port, baudrate, enteredtext, timeout=1):
+def uart(port, baudrate, enteredtext, timeout=.05):
     try:
         ser = serial.Serial(port, baudrate, timeout=timeout)
         print(f"serial port @ {port} with baudrate {baudrate}")
+        outputvals = []
+        data_to_send = (enteredtext[0] + 128).to_bytes(1, "big") 
         
         while True:
             # rx
-            data_received = ser.read().decode('utf-8').strip()
+            
+            data_received = int.from_bytes(ser.readline(), "big")
             if data_received:
                 print(f"rx: {data_received}")
-                ser.close()
-                return data_received
-            
+                outputvals.append(data_received-128)
+                if type(enteredtext[len(outputvals)]) == int:
+                    data_to_send = (enteredtext[len(outputvals)] + 128).to_bytes(1, "big")
+                else:
+                    data_to_send = enteredtext[len(outputvals)]
+                    
+
             # tx
-            data_to_send = enteredtext
-            if data_to_send.lower() == 'exit':
-                break
-            ser.write(data_to_send.encode('utf-8'))
-            time.sleep(1)
+            
+            print(f"tx: {data_to_send}")
+            if type(data_to_send) == str:    
+                if data_to_send.lower() == 'end':
+                    break
+            if data_to_send != "":
+                ser.write(data_to_send)
+            data_to_send = ""
+            #time.sleep(.005)
+                
 
         ser.close()
         print(f"closed {port}")
+        return outputvals
         
     except serial.SerialException as e:
         print(f"e：{e}")
 
 #baudrate and port def
 def show_text():
-    nonchardict = {}
+    capitalarray = []
     text = entry.get()
+    print(text)
     counter = 0
+    valuearray = []
+    spacearray = []
     finalstring = ""
-    for char in text:
-        if char in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ':
+    for chart in range(len(text)):
+        char = text[chart]
+        print(char)
+        if char in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ':
             if char in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
-                sentchar = ord(char.lower()) - 97
-                nonchardict['A'] = counter
-            else:
-                sentchar = ord(char) - 97
-        finalstring += uart(port='COM4', baudrate=9600, enteredtext=char(sentchar))
-        sleep(1)
-    label.config(text=text)
+                valuearray.append((ord(char.lower()) - 97))
+                capitalarray.append(counter)
+            if char == ' ':
+                spacearray.append(counter)           
+
+            if char in 'abcdefghijklmnopqrstuvwxyz':
+                valuearray.append((ord(char) - 97))
+                
+            counter += 1
+    valuearray.append("END")
+    finalstring = uart(port='COM4', baudrate=9600, enteredtext=valuearray)
+    finaltext = ""
+    for val in finalstring:
+        finaltext += chr(val + 97)
+    for space in spacearray:
+        finaltext = finaltext[:space] + " " + finaltext[space:]
+    for cap in capitalarray:
+        finaltext = finaltext[:cap] + finaltext[cap].upper() + finaltext[cap+1:]   
+    print(finaltext)
+    print(spacearray)    
+    label.config(text=finaltext)
 
 window = tk.Tk()
 window.geometry("1920x1080")
@@ -60,7 +92,7 @@ label.place(x=10, y=600)
 
 window.mainloop()
 
-uart(port='COM4', baudrate=9600)
+#uart(port='COM4', baudrate=9600)
 window.mainloop()
 # your port could be COM4 or something else, 
 # look in Device Manager in Windows to find 
