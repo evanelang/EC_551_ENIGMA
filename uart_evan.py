@@ -2,20 +2,22 @@ import serial
 import time
 import tkinter as tk
 
-def uart(port, baudrate, enteredtext, timeout=.05):
+def uart(port, baudrate, enteredtext, timeout=1):
     try:
         ser = serial.Serial(port, baudrate, timeout=timeout)
         print(f"serial port @ {port} with baudrate {baudrate}")
         outputvals = []
         data_to_send = (enteredtext[0] + 128).to_bytes(1, "big") 
-        
+        #clear = ser.readline()
+        #print(clear)
+        #time.sleep(1)
         while True:
             # rx
             
             data_received = int.from_bytes(ser.readline(), "big")
             if data_received:
                 print(f"rx: {data_received}")
-                outputvals.append(data_received-128)
+                outputvals.append(data_received)
                 if type(enteredtext[len(outputvals)]) == int:
                     data_to_send = (enteredtext[len(outputvals)] + 128).to_bytes(1, "big")
                 else:
@@ -68,6 +70,7 @@ def show_text():
     finalstring = uart(port='COM4', baudrate=9600, enteredtext=valuearray)
     finaltext = ""
     for val in finalstring:
+        print(val)
         finaltext += chr(val + 97)
     for space in spacearray:
         finaltext = finaltext[:space] + " " + finaltext[space:]
