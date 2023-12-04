@@ -11,6 +11,7 @@ def uart(port, baudrate, enteredtext, timeout=1):
         #clear = ser.readline()
         #print(clear)
         #time.sleep(1)
+        ser.write(data_to_send)
         while True:
             # rx
             
@@ -22,17 +23,19 @@ def uart(port, baudrate, enteredtext, timeout=1):
                     data_to_send = (enteredtext[len(outputvals)] + 128).to_bytes(1, "big")
                 else:
                     data_to_send = enteredtext[len(outputvals)]
+                if type(data_to_send) == str:    
+                    if data_to_send.lower() == 'end':
+                        break
+                print(f"tx: {data_to_send}")
+                if data_to_send != "":
+                    ser.write(data_to_send)
+            
                     
 
             # tx
             
             print(f"tx: {data_to_send}")
-            if type(data_to_send) == str:    
-                if data_to_send.lower() == 'end':
-                    break
-            if data_to_send != "":
-                ser.write(data_to_send)
-            data_to_send = ""
+            
             #time.sleep(.005)
                 
 
