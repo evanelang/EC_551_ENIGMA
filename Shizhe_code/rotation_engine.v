@@ -8,49 +8,80 @@
 //////////////////////////////////////////////////////////////////////////////////
 module rotation_engine(
     input rst,
-    input [4:0]data_in,
-    output reg [4:0] rotor1_pos, 
-    output reg [4:0] rotor2_pos, 
-    output reg [4:0] rotor3_pos
+    input [5:0]data_in,
+    output reg [5:0] rotor1_pos, 
+    output reg [5:0] rotor2_pos, 
+    output reg [5:0] rotor3_pos
     );
-    reg [14:0]setup;
+  
     
     initial 
     begin
-    rotor1_pos = 5'd00000;
-    rotor2_pos = 5'd00000;
-    rotor3_pos = 5'd00000;
+    rotor1_pos <= 6'd000000;
+    rotor2_pos <= 6'd000000;
+    rotor3_pos <= 6'd000000;
     end
     
     always@(rst)begin
-    rotor1_pos <= 5'd00000;
-    rotor2_pos <= 5'd00000;
-    rotor3_pos <= 5'd00000;
+    rotor1_pos <= 6'd000000;
+    rotor2_pos <= 6'd000000;
+    rotor3_pos <= 6'd000000;
     end
 
-
+/*
 always @ (data_in) 
 begin
-rotor1_pos = rotor1_pos + 5'd1; 
-if (rotor1_pos > 5'd25) 
+if(rotor1_pos==6'd0)begin
+rotor1_pos = rotor1_pos + 6'd1; 
+if (rotor1_pos > 6'd26) 
 begin 
-rotor1_pos = 5'd0;
-rotor2_pos = rotor2_pos + 5'd1; 
-            if (rotor2_pos > 5'd25) 
+rotor1_pos = 6'd1;
+rotor2_pos = rotor2_pos + 6'd1; 
+            if (rotor2_pos > 6'd26) 
             begin 
-                rotor2_pos = 5'd0;
-                rotor3_pos = rotor3_pos + 5'd1; 
-                if (rotor3_pos > 5'd25) 
+                rotor2_pos = 6'd1;
+                rotor3_pos = rotor3_pos + 6'd1; 
+                if (rotor3_pos > 6'd26) 
                 begin 
-                    rotor1_pos= 5'd0;
-                    rotor3_pos= 5'd0;
+                    rotor3_pos= 6'd1;
                 end
             end
         end
         
 end
-    
+end
+*/
 
+always@(data_in)begin
+if(rotor2_pos==6'd0&&rotor3_pos==6'd0)begin
+rotor1_pos=rotor1_pos+6'd1;
+if(rotor1_pos>6'd26)begin
+rotor1_pos=6'd0;
+rotor2_pos=rotor2_pos+6'd1;
+end
+end
+else
+if(rotor1_pos>=6'd0&&rotor2_pos>=6'd0)begin
+rotor1_pos=rotor1_pos+6'd1;
+  if(rotor1_pos>6'd26)begin
+  rotor1_pos=6'd0;
+  rotor2_pos=rotor2_pos+6'd1;
+  if(rotor2_pos>6'd26)begin
+  rotor2_pos=6'd0;
+  rotor3_pos=rotor3_pos+6'd1;
+    if(rotor3_pos>6'd26)begin
+    rotor1_pos=6'd0;
+    rotor2_pos=6'd0;
+    rotor3_pos=6'd0;
+    end
+  end
+  end
+end
+
+
+
+
+end
 
 endmodule
 
