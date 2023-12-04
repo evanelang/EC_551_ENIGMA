@@ -55,7 +55,7 @@ end
 always@(data_in)begin
 if(rotor2_pos==6'd0&&rotor3_pos==6'd0)begin
 rotor1_pos=rotor1_pos+6'd1;
-if(rotor1_pos>6'd26)begin
+if(rotor1_pos>6'd25)begin
 rotor1_pos=6'd0;
 rotor2_pos=rotor2_pos+6'd1;
 end
@@ -63,13 +63,13 @@ end
 else
 if(rotor1_pos>=6'd0&&rotor2_pos>=6'd0)begin
 rotor1_pos=rotor1_pos+6'd1;
-  if(rotor1_pos>6'd26)begin
+  if(rotor1_pos>6'd25)begin
   rotor1_pos=6'd0;
   rotor2_pos=rotor2_pos+6'd1;
-  if(rotor2_pos>6'd26)begin
+  if(rotor2_pos>6'd25)begin
   rotor2_pos=6'd0;
   rotor3_pos=rotor3_pos+6'd1;
-    if(rotor3_pos>6'd26)begin
+    if(rotor3_pos>6'd25)begin
     rotor1_pos=6'd0;
     rotor2_pos=6'd0;
     rotor3_pos=6'd0;
