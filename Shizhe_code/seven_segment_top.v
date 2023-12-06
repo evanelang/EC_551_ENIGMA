@@ -22,19 +22,25 @@
 
 module seven_segment_top(
 input [5:0]data_in,
-input [5:0]r0_pos,
-input [5:0]r1_pos,
-input [5:0]r2_pos,
-output [3:0]anode,
-output [6:0]seg_letter,
-output [6:0]seg_pos1,
-output [6:0]seg_pos2,
-output [6:0]seg_pos3
+//input [5:0]r0_pos,
+//input [5:0]r1_pos,
+//input [5:0]r2_pos,
+output [6:0]seg_letter
+//output [6:0]seg_pos0,
+//output [6:0]seg_pos1,
+//output [6:0]seg_pos2
     );
     
-    assign anode=4'b0000;
     
     seg_letter_display seg_lit(.data_in(data_in),.
     seg_letter(seg_letter));
+   // seg_letter_display segpos0(.data_in(r0_pos),
+    //.seg_letter(seg_pos0));
+    //seg_letter_display segpos1(.data_in(r1_pos),
+    //.seg_letter(seg_pos1));
+    //seg_letter_display segpos2(.data_in(r2_pos),
+    //.seg_letter(seg_pos2));
+    
+    
     
 endmodule
