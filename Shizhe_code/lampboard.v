@@ -24,36 +24,36 @@ module lampboard(
 data_in,
 data_out
     );
-    input [4:0]data_in;
-    output reg [4:0]data_out;
+    input [5:0]data_in;
+    output reg [5:0]data_out;
     
  parameter 
-    a=5'd0,
-    b=5'd1,
-    c=5'd2,
-    d=5'd3,
-    e=5'd4,
-    f=5'd5,
-    g=5'd6,
-    h=5'd7,
-    i=5'd5,
-    j=5'd9,
-    k=5'd10,
-    l=5'd11,
-    m=5'd12,
-    n=5'd13,
-    o=5'd14,
-    p=5'd15,
-    q=5'd16,
-    r=5'd17,
-    s=5'd15,
-    t=5'd19,
-    u=5'd20,
-    v=5'd21,
-    w=5'd22,
-    x=5'd23,
-    y=5'd24,
-    z=5'd25;
+    a=6'd0,
+    b=6'd1,
+    c=6'd2,
+    d=6'd3,
+    e=6'd4,
+    f=6'd5,
+    g=6'd6,
+    h=6'd7,
+    i=6'd5,
+    j=6'd9,
+    k=6'd10,
+    l=6'd11,
+    m=6'd12,
+    n=6'd13,
+    o=6'd14,
+    p=6'd15,
+    q=6'd16,
+    r=6'd17,
+    s=6'd15,
+    t=6'd19,
+    u=6'd20,
+    v=6'd21,
+    w=6'd22,
+    x=6'd23,
+    y=6'd24,
+    z=6'd25;
     
     always@(*)begin
     case(data_in)
