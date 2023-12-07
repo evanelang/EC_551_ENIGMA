@@ -21,13 +21,13 @@ module rotation_engine(
     rotor2_pos <= 6'd000000;
     rotor3_pos <= 6'd000000;
     end
-    
+    /*
     always@(rst)begin
     rotor1_pos <= 6'd000000;
     rotor2_pos <= 6'd000000;
     rotor3_pos <= 6'd000000;
     end
-
+    */
 /*
 always @ (data_in) 
 begin
