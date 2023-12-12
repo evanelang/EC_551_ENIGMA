@@ -66,12 +66,12 @@ https://drive.google.com/file/d/1xMnt_nc_mSuYF8l5wpbqQAkyDTfwIfwO/view?usp=drive
 ## Description
 ENIGMA 551 takes the classic enigma machine used for encryption and implements it on the small form factor of a modern fpga. Using a python program to interface between the user's computer and the fpga, the act of encoding messages is as simple as sending an email.
 
-for more information, visit our github repository at:
+For more information, visit our github repository at:
 https://github.com/evanelang/EC_551_ENIGMA
 
 ## Authors:
 
-This project is completed as part of the Advanced Digital Design with Verilog and FPGA(EC 551) class at Boston university. Class is taught by professor Douglas Densmore.
+This project is completed as part of the Advanced Digital Design with Verilog and FPGA(EC 551) class at Boston University. Class is taught by professor Douglas Densmore.
 
 This project is completed by the following students(authors):
 
