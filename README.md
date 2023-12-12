@@ -73,10 +73,10 @@ https://github.com/evanelang/EC_551_ENIGMA
 
 This project is completed as part of the Advanced Digital Design with Verilog and FPGA(EC 551) class at Boston university. Class is taught by professor Douglas Densmore.
 
-This project is completed by the following students(authors)
+This project is completed by the following students(authors):
 
-  Copyright   Evan  Lang      evanlang@bu.edu
-  Copyright   Long Chen       lchen122@bu.edu 
-  Copyright   Mayra Texeira   msteixei@bu.edu 
-  Copyright   Shizhe Yang     Szyang78@bu.edu
+Copyright   Evan  Lang      evanlang@bu.edu
+Copyright   Long Chen       lchen122@bu.edu 
+Copyright   Mayra Texeira   msteixei@bu.edu 
+Copyright   Shizhe Yang     Szyang78@bu.edu
 
