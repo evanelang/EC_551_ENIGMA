@@ -11,7 +11,7 @@ Implementation: Translating these components to an FPGA framework.
 ### 2. FPGA Implementation
 Rotation Engine: Manages dynamics for all rotors.
 Rotor Position: Mimics the original Enigma's rotor movements.
-Plugboard: Implemented digitally for encryption/decryption.
+Plugboard/Reflector: Implemented digitally for encryption/decryption.
 
 ## Challenges
 Encryption and decryption process intricacies.
@@ -28,15 +28,16 @@ Integrating an actual VGA display for improved user interaction.
 # How to use
 - Final
 - 
-  |_  ENIGMA_FULL.zip      The whole Vivado Project
+  |_  ENIGMA_FULL.zip      The whole Vivado Project, unzip this and load the vivado project file inside
   
   |_  UART_FINAL.py        The Python interface for UART communication between PC and FPGA. A new window would pop up on running the code, and simply type in whatever needed to
                            be sent. This Python code is specifically wrote for Windows system, please connect the programmed FPGA board to one of the USB on your computer before
                            start the program, or the program won't be able to find the COM port. If issue still occurs, please check "*Device Manager*" and refer to "*Serial*" to 
                            see if the board is assigned to any port other than "*COM4*", and change *Line 99* to the corresponding name.
-  
   |_  uart_top.bit       The bitstream file to program the Bays3 Board
-- OLD                       These are all the files we used during the development process              
+
+These are all the files we used during the development and can be looked at to see the project's progress over time
+- OLD                                     
   |_  long_code         
        
   |_  Shizhe_code
@@ -62,3 +63,5 @@ Integrating an actual VGA display for improved user interaction.
 
 ## Link to final demo video: 
 https://drive.google.com/file/d/1xMnt_nc_mSuYF8l5wpbqQAkyDTfwIfwO/view?usp=drive_link
+## Description
+ENIGMA 551 takes the classic enigma machine used for encryption and implements it on the small form factor of a modern fpga. Using a python program to interface between the user's computer and the fpga, the act of encoding messages is as simple as sending an email
