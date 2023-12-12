@@ -75,8 +75,8 @@ This project is completed as part of the Advanced Digital Design with Verilog an
 
 This project is completed by the following students(authors)
 
-copyright   Evan  Lang      evanlang@bu.edu
-copyright   Long Chen       lchen122@bu.edu 
-copyright   Mayra Texeira   msteixei@bu.edu 
-copyright   Shizhe Yang     Szyang78@bu.edu
+  Copyright   Evan  Lang      evanlang@bu.edu
+  Copyright   Long Chen       lchen122@bu.edu 
+  Copyright   Mayra Texeira   msteixei@bu.edu 
+  Copyright   Shizhe Yang     Szyang78@bu.edu
 
