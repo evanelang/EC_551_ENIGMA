@@ -36,8 +36,8 @@ Integrating an actual VGA display for improved user interaction.
                            see if the board is assigned to any port other than "*COM4*", and change *Line 99* to the corresponding name.
   
   |_  uart_top.bit       The bitstream file to program the Bays3 Board
-- OLD                    
-  |_  long_code          These are all the files we had done during the development process
+- OLD                       These are all the files we used during the development process              
+  |_  long_code         
        
   |_  Shizhe_code
   
